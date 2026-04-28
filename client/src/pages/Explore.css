@@ -1,0 +1,773 @@
+.explore-page {
+
+    min-height: 100vh;
+
+    background: #f7fafc;
+
+}
+
+
+
+.explore-hero {
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    padding: 3rem 2rem;
+
+    text-align: center;
+
+    color: white;
+
+}
+
+
+
+.explore-hero h1 {
+
+    font-size: 2rem;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.explore-hero p {
+
+    font-size: 1rem;
+
+    opacity: 0.9;
+
+}
+
+
+
+.explore-content {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 2rem;
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 2rem;
+
+}
+
+
+
+/* Filter Sidebar */
+
+.filter-sidebar {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 1.5rem;
+
+    position: sticky;
+
+    top: 90px;
+
+    height: fit-content;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+}
+
+
+
+.filter-sidebar h3 {
+
+    font-size: 1.2rem;
+
+    margin-bottom: 1.5rem;
+
+    color: #2d3748;
+
+    padding-bottom: 0.5rem;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+
+
+.filter-group {
+
+    margin-bottom: 1.5rem;
+
+}
+
+
+
+.filter-group label {
+
+    display: block;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    color: #4a5568;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.gender-filters {
+
+    display: flex;
+
+    gap: 0.5rem;
+
+}
+
+
+
+.filter-btn {
+
+    flex: 1;
+
+    padding: 0.5rem;
+
+    border: 1px solid #e2e8f0;
+
+    background: white;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 0.85rem;
+
+    transition: all 0.3s;
+
+}
+
+
+
+.filter-btn.active {
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    color: white;
+
+    border-color: transparent;
+
+}
+
+
+
+.price-range-slider {
+
+    padding: 0.5rem 0;
+
+}
+
+
+
+.price-range-slider input {
+
+    width: 100%;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.price-values {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 0.8rem;
+
+    color: #718096;
+
+}
+
+
+
+.search-input,
+
+.facility-select {
+
+    width: 100%;
+
+    padding: 0.6rem;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 8px;
+
+    font-size: 0.9rem;
+
+}
+
+
+
+.search-input:focus,
+
+.facility-select:focus {
+
+    outline: none;
+
+    border-color: #534AB7;
+
+}
+
+
+
+.results-info {
+
+    background: #f7fafc;
+
+    padding: 0.8rem;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    margin-top: 1rem;
+
+    font-size: 0.9rem;
+
+}
+
+
+
+.clear-filters {
+
+    width: 100%;
+
+    margin-top: 1rem;
+
+    padding: 0.6rem;
+
+    background: #e2e8f0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 0.85rem;
+
+    color: #4a5568;
+
+}
+
+
+
+.clear-filters:hover {
+
+    background: #cbd5e0;
+
+}
+
+
+
+/* PG Cards Grid */
+
+.pgs-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+    gap: 1.5rem;
+
+}
+
+
+
+.pg-card {
+
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+}
+
+
+
+.pg-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+
+
+.pg-card-image {
+
+    height: 180px;
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.image-placeholder {
+
+    font-size: 4rem;
+
+}
+
+
+
+.pg-type-badge {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 12px;
+
+    padding: 0.3rem 0.8rem;
+
+    border-radius: 20px;
+
+    font-size: 0.7rem;
+
+    color: white;
+
+    font-weight: 500;
+
+}
+
+
+
+.favorite-icon {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    background: rgba(255,255,255,0.9);
+
+    border: none;
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: all 0.3s;
+
+}
+
+
+
+.favorite-icon:hover {
+
+    background: white;
+
+    transform: scale(1.1);
+
+}
+
+
+
+.pg-card-content {
+
+    padding: 1rem;
+
+}
+
+
+
+.pg-card-content h3 {
+
+    font-size: 1rem;
+
+    margin-bottom: 0.3rem;
+
+    color: #2d3748;
+
+}
+
+
+
+.pg-address {
+
+    font-size: 0.75rem;
+
+    color: #718096;
+
+    margin-bottom: 0.5rem;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+
+.pg-price {
+
+    font-size: 1.2rem;
+
+    font-weight: bold;
+
+    color: #534AB7;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.pg-price span {
+
+    font-size: 0.7rem;
+
+    color: #718096;
+
+}
+
+
+
+.pg-details-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 0.5rem;
+
+    font-size: 0.75rem;
+
+}
+
+
+
+.pg-distance {
+
+    color: #718096;
+
+}
+
+
+
+.pg-rating {
+
+    color: #fbbf24;
+
+}
+
+
+
+.pg-facilities {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.3rem;
+
+    margin-bottom: 1rem;
+
+}
+
+
+
+.facility-tag {
+
+    background: #f7fafc;
+
+    padding: 0.2rem 0.5rem;
+
+    border-radius: 12px;
+
+    font-size: 0.7rem;
+
+    color: #4a5568;
+
+}
+
+
+
+.view-details-btn {
+
+    width: 100%;
+
+    padding: 0.6rem;
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 0.85rem;
+
+    cursor: pointer;
+
+    transition: opacity 0.3s;
+
+}
+
+
+
+.view-details-btn:hover {
+
+    opacity: 0.9;
+
+}
+
+
+
+.no-results {
+
+    text-align: center;
+
+    padding: 3rem;
+
+    background: white;
+
+    border-radius: 15px;
+
+    grid-column: 1 / -1;
+
+}
+
+
+
+.no-results button {
+
+    margin-top: 1rem;
+
+    padding: 0.6rem 1.5rem;
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* PG Card Image Styles */
+
+.pg-card-image {
+
+    height: 200px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+}
+
+
+
+.pg-card-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+
+.pg-card:hover .pg-card-image img {
+
+    transform: scale(1.05);
+
+}
+
+
+
+.image-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 4rem;
+
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+
+    color: white;
+
+}
+
+
+
+.pg-type-badge {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 12px;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 0.7rem;
+
+    font-weight: 600;
+
+    color: white;
+
+    z-index: 1;
+
+}
+
+
+
+.favorite-icon {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    background: rgba(255,255,255,0.9);
+
+    border: none;
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: all 0.3s;
+
+    z-index: 1;
+
+}
+
+
+
+.favorite-icon:hover {
+
+    background: white;
+
+    transform: scale(1.1);
+
+    color: #e91e63;
+
+}
+
+
+
+@media (max-width: 768px) {
+
+    .explore-content {
+
+        grid-template-columns: 1fr;
+
+        padding: 1rem;
+
+    }
+
+    
+
+    .filter-sidebar {
+
+        position: static;
+
+        margin-bottom: 1rem;
+
+    }
+
+    
+
+    .explore-hero h1 {
+
+        font-size: 1.5rem;
+
+    }
+
+    
+
+    .pgs-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

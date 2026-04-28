@@ -9,7 +9,6 @@ const connectDB = require('./config/db');
 
 
 
-
 dotenv.config();
 
 connectDB();

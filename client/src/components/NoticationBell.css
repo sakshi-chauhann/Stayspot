@@ -1,0 +1,132 @@
+.notification-bell {
+    position: relative;
+}
+
+.bell-button {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: relative;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.bell-button:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.bell-button.has-notifications {
+    animation: bellShake 0.5s ease;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f56565;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 18px;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 1000;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f7fafc;
+}
+
+.notification-header h4 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.notification-header button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #718096;
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.notification-item:hover {
+    background: #f7fafc;
+}
+
+.notification-item.unread {
+    background: #ebf4ff;
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content p {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    color: #2d3748;
+}
+
+.notification-content small {
+    font-size: 0.7rem;
+    color: #718096;
+}
+
+.no-notifications {
+    padding: 40px;
+    text-align: center;
+    color: #718096;
+}
+
+@keyframes bellShake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+@media (max-width: 768px) {
+    .notification-dropdown {
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}

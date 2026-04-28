@@ -1,0 +1,263 @@
+.bookings-container {
+    min-height: 100vh;
+    background: #f7fafc;
+    padding: 2rem;
+}
+
+.bookings-header {
+    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bookings-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.bookings-header p {
+    opacity: 0.9;
+}
+
+.bookings-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.booking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.booking-header h3 {
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin: 0;
+}
+
+.booking-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.booking-status.confirmed {
+    background: #48bb78;
+    color: white;
+}
+
+.booking-status.pending {
+    background: #ed8936;
+    color: white;
+}
+
+.booking-status.cancelled {
+    background: #f56565;
+    color: white;
+}
+
+.booking-info {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: #f7fafc;
+    margin: 0 1rem 1rem 1rem;
+    border-radius: 12px;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-row .label {
+    font-size: 0.7rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-row .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-top: 0.2rem;
+}
+
+.payment-section {
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.payment-section h4 {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+.payment-table-container {
+    overflow-x: auto;
+}
+
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-table th,
+.payment-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.payment-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.payment-table td {
+    color: #2d3748;
+}
+
+.overdue-row {
+    background: #fff5f5;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.status-badge.paid {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-badge.pending {
+    background: #feebc8;
+    color: #975a16;
+}
+
+.status-badge.overdue {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.pay-rent-btn {
+    background: #534AB7;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.3s;
+}
+
+.pay-rent-btn:hover {
+    background: #3d3699;
+    transform: translateY(-1px);
+}
+
+.paid-date {
+    font-size: 0.7rem;
+    color: #48bb78;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.empty-state .explore-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: #534AB7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.error-card {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.error-card button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: #534AB7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .bookings-container {
+        padding: 1rem;
+    }
+    
+    .booking-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .booking-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-table th,
+    .payment-table td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-rent-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+    }
+}

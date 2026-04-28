@@ -1,0 +1,336 @@
+/* Demo Popup Styles */
+
+.demo-popup-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 1000;
+    
+
+    animation: fadeIn 0.3s ease;
+
+}
+
+
+
+@keyframes fadeIn {
+
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+
+}
+
+
+
+.demo-popup-content {
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 2rem;
+
+    max-width: 400px;
+
+    width: 90%;
+
+    text-align: center;
+
+    animation: slideUp 0.3s ease;
+
+}
+
+
+
+@keyframes slideUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+
+.demo-popup-header {
+
+    margin-bottom: 1.5rem;
+
+}
+
+
+
+.razorpay-icon {
+
+    font-size: 3rem;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.demo-popup-header h3 {
+
+    color: #2d3748;
+
+    margin: 0;
+
+}
+
+
+
+.demo-popup-content p {
+
+    color: #718096;
+
+    margin-bottom: 1.5rem;
+
+}
+
+
+
+.demo-options {
+
+    display: flex;
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+
+}
+
+
+
+.demo-success-btn, .demo-failure-btn {
+
+    flex: 1;
+
+    padding: 1rem;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: all 0.3s;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+}
+
+
+
+.demo-success-btn span, .demo-failure-btn span {
+
+    font-size: 1.5rem;
+
+}
+
+
+
+.demo-success-btn small, .demo-failure-btn small {
+
+    font-size: 0.7rem;
+
+    font-weight: normal;
+
+}
+
+
+
+.demo-success-btn {
+
+    background: #48bb78;
+
+    color: white;
+
+}
+
+
+
+.demo-success-btn:hover {
+
+    background: #38a169;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.3);
+
+}
+
+
+
+.demo-failure-btn {
+
+    background: #f56565;
+
+    color: white;
+
+}
+
+
+
+.demo-failure-btn:hover {
+
+    background: #e53e3e;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(245, 101, 101, 0.3);
+
+}
+
+
+
+.demo-cancel-btn {
+
+    width: 100%;
+
+    padding: 0.8rem;
+
+    background: #e2e8f0;
+
+    color: #4a5568;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 500;
+
+    transition: all 0.3s;
+
+}
+
+
+
+.demo-cancel-btn:hover {
+
+    background: #cbd5e0;
+
+}
+
+
+
+/* Test Cards */
+
+.success-card, .failure-card {
+
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    text-align: center;
+
+}
+
+
+
+.success-card:hover, .failure-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+
+
+.success-card {
+
+    border-left: 4px solid #48bb78;
+
+}
+
+
+
+.failure-card {
+
+    border-left: 4px solid #f56565;
+
+}
+
+
+
+.test-card-icon {
+
+    font-size: 2rem;
+
+    margin-bottom: 0.5rem;
+
+}
+
+
+
+.test-card code {
+
+    display: block;
+
+    font-family: monospace;
+
+    font-size: 0.7rem;
+
+    background: #f0f0f0;
+
+    padding: 0.2rem;
+
+    border-radius: 4px;
+
+    margin-top: 0.5rem;
+
+}
+
+
+
+.processing {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 0.5rem;
+
+}
