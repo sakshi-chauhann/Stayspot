@@ -14,26 +14,28 @@ const BookingPayment = () => {
     const state = location.state || {};
     console.log('BookingPayment received state:', state);
     
-    const { 
-        paymentType = 'booking_fee',
-        amount = 500,
-        totalAmount = 500,
-        description = 'Booking Fee for PG',
-        pgName = 'PG',
-        roomType = 'Standard',
-        moveInDate,
-        duration,
-        studentName,
-        studentPhone,
-        bookingRequest = null
-    } = state;
+    // Extract payment details from state
+    const paymentType = state.paymentType || 'booking_fee';
+    const amount = state.amount || state.totalAmount || 500;
+    const description = state.description || 'Booking Fee for PG';
+    const pgName = state.pgName || 'PG';
+    const roomType = state.roomType || 'Standard';
+    const moveInDate = state.moveInDate;
+    const duration = state.duration;
+    const studentName = state.studentName;
+    const studentPhone = state.studentPhone;
+    const bookingRequest = state.bookingRequest;
     
     const RAZORPAY_KEY_ID = 'rzp_test_SiaqwyEJrTqzIJ';
-    const finalAmount = totalAmount || amount || 500;
+    const finalAmount = amount;
 
     useEffect(() => {
         console.log('Payment page loaded. Amount:', finalAmount, 'Type:', paymentType);
         loadRazorpayScript();
+        // Auto-trigger payment when page loads
+        setTimeout(() => {
+            handlePayment();
+        }, 500);
     }, []);
 
     const loadRazorpayScript = () => {
@@ -107,7 +109,6 @@ const BookingPayment = () => {
         }
     };
 
-    // Generate receipt after successful payment
     const generateReceipt = (paymentResponse, verificationResult) => {
         const receipt = {
             receiptNumber: `RCPT${Date.now()}`,
@@ -160,10 +161,9 @@ const BookingPayment = () => {
                         const verificationResult = await verifyPayment(response);
                         
                         if (verificationResult.success) {
-                            // Generate receipt
                             generateReceipt(response, verificationResult);
                             
-                            // Save booking
+                            // Save booking to localStorage
                             if (paymentType === 'booking_fee' && bookingRequest) {
                                 const allBookings = JSON.parse(localStorage.getItem('all_bookings') || '[]');
                                 const newBooking = {
@@ -178,9 +178,20 @@ const BookingPayment = () => {
                                 allBookings.push(newBooking);
                                 localStorage.setItem('all_bookings', JSON.stringify(allBookings));
                             }
+                            
+                            // Also save payment record
+                            const allPayments = JSON.parse(localStorage.getItem('student_payments') || '[]');
+                            allPayments.push({
+                                id: Date.now(),
+                                paymentId: response.razorpay_payment_id,
+                                amount: finalAmount,
+                                type: paymentType,
+                                date: new Date().toISOString()
+                            });
+                            localStorage.setItem('student_payments', JSON.stringify(allPayments));
+                            
                         } else {
                             alert('Payment verification failed. Please contact support.');
-                            navigate('/bookings');
                         }
                     } catch (error) {
                         console.error('Verification error:', error);
@@ -226,9 +237,7 @@ const BookingPayment = () => {
         }
     };
 
-    // Print receipt function
     const handlePrintReceipt = () => {
-        const printContent = document.getElementById('receipt-content').innerHTML;
         const printWindow = window.open('', '_blank');
         printWindow.document.write(`
             <!DOCTYPE html>
@@ -236,63 +245,15 @@ const BookingPayment = () => {
             <head>
                 <title>StaySpot Payment Receipt</title>
                 <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        padding: 40px;
-                        max-width: 800px;
-                        margin: auto;
-                    }
-                    .receipt-header {
-                        text-align: center;
-                        border-bottom: 3px solid #534AB7;
-                        padding-bottom: 20px;
-                        margin-bottom: 30px;
-                    }
-                    .company-name {
-                        font-size: 28px;
-                        color: #534AB7;
-                        font-weight: bold;
-                    }
-                    .receipt-title {
-                        font-size: 24px;
-                        margin: 10px 0;
-                    }
-                    .section {
-                        margin: 20px 0;
-                        padding: 15px;
-                        border: 1px solid #ddd;
-                        border-radius: 8px;
-                    }
-                    .row {
-                        display: flex;
-                        justify-content: space-between;
-                        margin: 10px 0;
-                        padding: 5px 0;
-                    }
-                    .total {
-                        border-top: 2px solid #534AB7;
-                        margin-top: 10px;
-                        padding-top: 10px;
-                        font-weight: bold;
-                        font-size: 18px;
-                    }
-                    .footer {
-                        text-align: center;
-                        margin-top: 40px;
-                        padding-top: 20px;
-                        border-top: 1px solid #ddd;
-                        font-size: 12px;
-                        color: #666;
-                    }
-                    button {
-                        background: #534AB7;
-                        color: white;
-                        padding: 10px 20px;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        margin: 10px;
-                    }
+                    body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: auto; }
+                    .receipt-header { text-align: center; border-bottom: 3px solid #534AB7; padding-bottom: 20px; margin-bottom: 30px; }
+                    .company-name { font-size: 28px; color: #534AB7; font-weight: bold; }
+                    .receipt-title { font-size: 24px; margin: 10px 0; }
+                    .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+                    .row { display: flex; justify-content: space-between; margin: 10px 0; padding: 5px 0; }
+                    .total { border-top: 2px solid #534AB7; margin-top: 10px; padding-top: 10px; font-weight: bold; font-size: 18px; }
+                    .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+                    button { background: #534AB7; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
                 </style>
             </head>
             <body>
@@ -304,8 +265,7 @@ const BookingPayment = () => {
                     <div class="row"><strong>Receipt Number:</strong> <span>${receiptData.receiptNumber}</span></div>
                     <div class="row"><strong>Date & Time:</strong> <span>${receiptData.date}</span></div>
                     <div class="row"><strong>Payment ID:</strong> <span>${receiptData.paymentId}</span></div>
-                    <div class="row"><strong>Order ID:</strong> <span>${receiptData.orderId}</span></div>
-                    <div class="row"><strong>Status:</strong> <span style="color:#48bb78;">✅ ${receiptData.status}</span></div>
+                    <div class="row"><strong>Status:</strong> <span style="color:#48bb78;">✅ Success</span></div>
                 </div>
                 <div class="section">
                     <h3>Student Information</h3>
@@ -316,8 +276,6 @@ const BookingPayment = () => {
                     <h3>Payment Details</h3>
                     <div class="row"><strong>PG Name:</strong> <span>${receiptData.pgName}</span></div>
                     <div class="row"><strong>Room Type:</strong> <span>${receiptData.roomType}</span></div>
-                    <div class="row"><strong>Payment Type:</strong> <span>${receiptData.paymentType === 'booking_fee' ? 'Booking Fee' : 'Monthly Rent'}</span></div>
-                    ${receiptData.moveInDate ? `<div class="row"><strong>Move-in Date:</strong> <span>${receiptData.moveInDate}</span></div>` : ''}
                     <div class="row total"><strong>Amount Paid:</strong> <strong>₹${receiptData.amount.toLocaleString()}</strong></div>
                 </div>
                 <div class="footer">
@@ -332,70 +290,6 @@ const BookingPayment = () => {
             </html>
         `);
         printWindow.document.close();
-    };
-
-    // Download receipt as PDF
-    const handleDownloadReceipt = () => {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>StaySpot_Receipt_${receiptData?.receiptNumber || 'payment'}</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        padding: 40px;
-                        max-width: 800px;
-                        margin: auto;
-                    }
-                    .receipt-header {
-                        text-align: center;
-                        border-bottom: 3px solid #534AB7;
-                        padding-bottom: 20px;
-                        margin-bottom: 30px;
-                    }
-                    .company-name { font-size: 28px; color: #534AB7; font-weight: bold; }
-                    .receipt-title { font-size: 24px; margin: 10px 0; }
-                    .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
-                    .row { display: flex; justify-content: space-between; margin: 10px 0; padding: 5px 0; }
-                    .total { border-top: 2px solid #534AB7; margin-top: 10px; padding-top: 10px; font-weight: bold; }
-                    .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; }
-                    @media print {
-                        button { display: none; }
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="receipt-header">
-                    <div class="company-name">🏠 StaySpot</div>
-                    <div class="receipt-title">PAYMENT RECEIPT</div>
-                </div>
-                <div class="section">
-                    <div class="row"><strong>Receipt Number:</strong> <span>${receiptData.receiptNumber}</span></div>
-                    <div class="row"><strong>Date:</strong> <span>${receiptData.date}</span></div>
-                    <div class="row"><strong>Payment ID:</strong> <span>${receiptData.paymentId}</span></div>
-                    <div class="row"><strong>Status:</strong> <span>✅ Success</span></div>
-                </div>
-                <div class="section">
-                    <h3>Student Information</h3>
-                    <div class="row"><strong>Name:</strong> <span>${receiptData.studentName}</span></div>
-                    <div class="row"><strong>Phone:</strong> <span>${receiptData.studentPhone}</span></div>
-                </div>
-                <div class="section">
-                    <h3>Payment Details</h3>
-                    <div class="row"><strong>PG Name:</strong> <span>${receiptData.pgName}</span></div>
-                    <div class="row"><strong>Room Type:</strong> <span>${receiptData.roomType}</span></div>
-                    <div class="row total"><strong>Amount Paid:</strong> <strong>₹${receiptData.amount.toLocaleString()}</strong></div>
-                </div>
-                <div class="footer">
-                    <p>Thank you for choosing StaySpot!</p>
-                </div>
-            </body>
-            </html>
-        `);
-        printWindow.document.close();
-        printWindow.print();
     };
 
     const ReceiptModal = () => (
@@ -433,7 +327,6 @@ const BookingPayment = () => {
                         <h4>Booking Details</h4>
                         <div className="receipt-row"><span>PG Name:</span><span>{receiptData?.pgName}</span></div>
                         <div className="receipt-row"><span>Room Type:</span><span>{receiptData?.roomType}</span></div>
-                        {receiptData?.moveInDate && <div className="receipt-row"><span>Move-in Date:</span><span>{receiptData.moveInDate}</span></div>}
                         <div className="receipt-row total"><span>Amount Paid:</span><span>₹{receiptData?.amount?.toLocaleString()}</span></div>
                     </div>
                     
@@ -445,7 +338,6 @@ const BookingPayment = () => {
                 
                 <div className="receipt-actions">
                     <button className="print-receipt-btn" onClick={handlePrintReceipt}>🖨️ Print Receipt</button>
-                    <button className="download-receipt-btn" onClick={handleDownloadReceipt}>📥 Download PDF</button>
                     <button className="close-receipt-btn-secondary" onClick={() => {
                         setShowReceipt(false);
                         navigate('/bookings');

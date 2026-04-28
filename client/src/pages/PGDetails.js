@@ -343,17 +343,29 @@ const PGDetails = () => {
     return (
         <div className="pg-details-page">
             {/* Image Gallery */}
-            <div className="image-gallery">
-                {pgPhotos[pg.name]?.map((img, idx) => (
-                    <div key={idx} className="gallery-item">
-                        <img src={img} alt={`${pg.name} - Photo ${idx + 1}`} className="gallery-image" />
-                    </div>
-                )) || (
-                    <div className="gallery-item">
-                        <div className="image-placeholder">🏠</div>
-                    </div>
-                )}
+            {/* Image Gallery */}
+<div className="image-gallery">
+    {pgPhotos[pg.name] && pgPhotos[pg.name].length > 0 ? (
+        pgPhotos[pg.name].slice(0, 3).map((img, idx) => (
+            <div key={idx} className="gallery-item">
+                <img 
+                    src={img} 
+                    alt={`${pg.name} - Photo ${idx + 1}`} 
+                    className="gallery-image" 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.innerHTML = '<div class="image-placeholder">🏠</div>';
+                    }}
+                />
             </div>
+        ))
+    ) : (
+        <div className="gallery-item">
+            <div className="image-placeholder" style={{ fontSize: '4rem' }}>🏠</div>
+        </div>
+    )}
+</div>
 
             <div className="details-container">
                 <div className="main-content">
