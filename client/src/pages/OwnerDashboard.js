@@ -7,7 +7,7 @@ const OwnerDashboard = () => {
     const [pg, setPg] = useState(null);
     const [tenants, setTenants] = useState([]);
     const [bookingRequests, setBookingRequests] = useState([]);
-    //const [payments, setPayments] = useState([]);
+    const [payments, setPayments] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [activeTab, setActiveTab] = useState('overview');
     const [showChatModal, setShowChatModal] = useState(null);

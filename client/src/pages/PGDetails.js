@@ -45,7 +45,6 @@ const PGDetails = () => {
     const [pg, setPg] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState({ rating: 5, comment: '' });
-    //const [showBooking, setShowBooking] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState('');
     const [selectedRoomPrice, setSelectedRoomPrice] = useState(null);
     const [showChat, setShowChat] = useState(false);
@@ -189,13 +188,12 @@ const PGDetails = () => {
         }
     ];
 
-    // Should look like THIS:
+    // FIXED useEffect - This was the problem!
     useEffect(() => {
-    const foundPG = allPGs.find(p => p.id === parseInt(id));
-    if (foundPG) {
-        setPg(foundPG);
-    }
-    }, [id, allPGs])  // ← Added dependencies
+        const foundPG = allPGs.find(p => p.id === parseInt(id));
+        if (foundPG) {
+            setPg(foundPG);
+        }
         
         // Load reviews from localStorage
         const savedReviews = localStorage.getItem(`reviews_pg_${id}`);
@@ -235,7 +233,7 @@ const PGDetails = () => {
         }
         
         setLoading(false);
-    }, [id, userid];
+    }, [id, user?.id, allPGs]);  // ← Fixed: Added all dependencies
 
     const handleAddReview = (e) => {
         e.preventDefault();
@@ -283,7 +281,6 @@ const PGDetails = () => {
                 pg: pg 
             } 
         });
-        setShowBooking(false);
     };
 
     const sendMessage = () => {
@@ -344,29 +341,28 @@ const PGDetails = () => {
     return (
         <div className="pg-details-page">
             {/* Image Gallery */}
-            {/* Image Gallery */}
-<div className="image-gallery">
-    {pgPhotos[pg.name] && pgPhotos[pg.name].length > 0 ? (
-        pgPhotos[pg.name].slice(0, 3).map((img, idx) => (
-            <div key={idx} className="gallery-item">
-                <img 
-                    src={img} 
-                    alt={`${pg.name} - Photo ${idx + 1}`} 
-                    className="gallery-image" 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.parentElement.innerHTML = '<div class="image-placeholder">🏠</div>';
-                    }}
-                />
+            <div className="image-gallery">
+                {pgPhotos[pg.name] && pgPhotos[pg.name].length > 0 ? (
+                    pgPhotos[pg.name].slice(0, 3).map((img, idx) => (
+                        <div key={idx} className="gallery-item">
+                            <img 
+                                src={img} 
+                                alt={`${pg.name} interior ${idx + 1}`} 
+                                className="gallery-image" 
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.parentElement.innerHTML = '<div class="image-placeholder">🏠</div>';
+                                }}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <div className="gallery-item">
+                        <div className="image-placeholder" style={{ fontSize: '4rem' }}>🏠</div>
+                    </div>
+                )}
             </div>
-        ))
-    ) : (
-        <div className="gallery-item">
-            <div className="image-placeholder" style={{ fontSize: '4rem' }}>🏠</div>
-        </div>
-    )}
-</div>
 
             <div className="details-container">
                 <div className="main-content">
@@ -432,7 +428,7 @@ const PGDetails = () => {
                         </div>
                     </div>
 
-                    {/* Google Maps Section - NOW WITH CORRECT COORDINATES */}
+                    {/* Google Maps Section */}
                     <div className="map-section">
                         <h3>Location Map</h3>
                         <div className="map-container">
