@@ -52,7 +52,7 @@ const Home = () => {
 
                 <div className="hero-content">
 
-                    <h1>Find Your Perfect PG<br />Near Graphic Era Hill University</h1>
+                    <h1>Find Your Perfect PG</h1>
 
                     <p>No brokers. No extra charges. Direct from owner to student.</p>
 
@@ -164,7 +164,7 @@ const Home = () => {
 
                     <p>
 
-                        PG Finder was created specifically for students coming to Dehradun for studies. 
+                       Stayspot was created specifically for students coming to Dehradun for studies. 
 
                         We understand the struggle of finding a reliable PG near college without dealing with 
 
@@ -198,7 +198,7 @@ const Home = () => {
 
                     <div className="footer-section">
 
-                        <h3>PG Finder</h3>
+                        <h3>Stayspot</h3>
 
                         <p>Find your perfect stay near Graphic Era Hill University</p>
 
@@ -220,7 +220,7 @@ const Home = () => {
 
                         <h4>Contact</h4>
 
-                        <p>📧 support@pgfinder.com</p>
+                        <p>📧 support@Stayspot.com</p>
 
                         <p>📍 Dehradun, Uttarakhand</p>
 
@@ -230,7 +230,7 @@ const Home = () => {
 
                 <div className="footer-bottom">
 
-                    <p>© 2024 PG Finder. All rights reserved. Made for students, by students.</p>
+                    <p>© 2024 Stayspot. All rights reserved. Made for students, by students.</p>
 
                 </div>
 
