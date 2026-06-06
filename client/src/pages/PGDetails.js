@@ -189,12 +189,13 @@ const PGDetails = () => {
         }
     ];
 
+    // Should look like THIS:
     useEffect(() => {
-        // Load PG data
-        const foundPG = allPGs.find(p => p.id === parseInt(id));
-        if (foundPG) {
-            setPg(foundPG);
-        }
+    const foundPG = allPGs.find(p => p.id === parseInt(id));
+    if (foundPG) {
+        setPg(foundPG);
+    }
+    }, [id, allPGs])  // ← Added dependencies
         
         // Load reviews from localStorage
         const savedReviews = localStorage.getItem(`reviews_pg_${id}`);
@@ -234,7 +235,7 @@ const PGDetails = () => {
         }
         
         setLoading(false);
-    }, [id, user?.id]);
+    }, [id, userid];
 
     const handleAddReview = (e) => {
         e.preventDefault();
