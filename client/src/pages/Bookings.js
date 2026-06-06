@@ -15,7 +15,7 @@ const Bookings = () => {
         } else {
             setLoading(false);
         }
-    }, [user]);
+    }, [loadBookings]);
 
     const loadBookings = () => {
         // Load confirmed bookings from localStorage

@@ -30,14 +30,13 @@ const BookingPayment = () => {
     const finalAmount = amount;
 
     useEffect(() => {
-        console.log('Payment page loaded. Amount:', finalAmount, 'Type:', paymentType);
-        loadRazorpayScript();
-        // Auto-trigger payment when page loads
-        setTimeout(() => {
-            handlePayment();
-        }, 500);
-    }, []);
-
+    console.log('Payment page loaded. Amount:', finalAmount, 'Type:', paymentType);
+    loadRazorpayScript();
+    // Auto-trigger payment when page loads
+    setTimeout(() => {
+        handlePayment();
+    }, 500);
+    }, [finalAmount, paymentType, handlePayment])  
     const loadRazorpayScript = () => {
         return new Promise((resolve) => {
             if (window.Razorpay) {

@@ -45,7 +45,7 @@ const PGDetails = () => {
     const [pg, setPg] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState({ rating: 5, comment: '' });
-    const [showBooking, setShowBooking] = useState(false);
+    //const [showBooking, setShowBooking] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState('');
     const [selectedRoomPrice, setSelectedRoomPrice] = useState(null);
     const [showChat, setShowChat] = useState(false);
