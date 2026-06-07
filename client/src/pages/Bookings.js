@@ -2,20 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Bookings.css';
+/* eslint-disable no-use-before-define */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        if (user) {
-            loadBookings();
-        } else {
-            setLoading(false);
-        }
-    }, [loadBookings]);
 
     const loadBookings = () => {
         // Load confirmed bookings from localStorage
@@ -70,6 +64,15 @@ const Bookings = () => {
         }
         setLoading(false);
     };
+
+    // MOVED useEffect AFTER loadBookings function (fixed the order)
+    useEffect(() => {
+        if (user) {
+            loadBookings();
+        } else {
+            setLoading(false);
+        }
+    }, [user]);  // Added user dependency instead of loadBookings
 
     const calculateLateFee = (dueDate) => {
         const today = new Date();
@@ -155,7 +158,15 @@ const Bookings = () => {
                                 <h4>💰 Monthly Rent Payments</h4>
                                 <div className="payment-table-container">
                                     <table className="payment-table">
-                                        <thead><tr><th>Month</th><th>Amount</th><th>Due Date</th><th>Status</th><th>Action</th></tr></thead>
+                                        <thead>
+                                            <tr>
+                                                <th>Month</th>
+                                                <th>Amount</th>
+                                                <th>Due Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             {booking.payments.map((payment, idx) => {
                                                 const lateFee = calculateLateFee(payment.dueDate);

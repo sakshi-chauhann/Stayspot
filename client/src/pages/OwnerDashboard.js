@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './OwnerDashboard.css';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 const OwnerDashboard = () => {
     const { user } = useContext(AuthContext);
     const [pg, setPg] = useState(null);
     const [tenants, setTenants] = useState([]);
     const [bookingRequests, setBookingRequests] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [payments, setPayments] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [activeTab, setActiveTab] = useState('overview');
@@ -57,15 +60,8 @@ const OwnerDashboard = () => {
         { id: 102, studentName: 'Simran Kaur', roomType: 'Double Sharing', duration: 3, monthlyRent: 8000, totalAmount: 24000, bookingFee: 500, moveInDate: '2026-05-10', studentPhone: '+91 9876543214', studentId: 'student_5', status: 'pending', message: 'Need parking space', ownerId: 'owner_1', pgName: 'Solitaire PG for Girls' }
     ];
 
-    useEffect(() => {
-        if (user && user.role === 'owner') {
-            loadDashboardData();
-            loadChatHistory();
-        }
-    }, [loadDashboardData, loadChatHistory]);
-
     const loadChatHistory = () => {
-        const savedChats = localStorage.getItem(`owner_chats_${user.id}`);
+        const savedChats = localStorage.getItem(`owner_chats_${user?.id}`);
         if (savedChats) {
             setChatHistory(JSON.parse(savedChats));
         }
@@ -74,7 +70,7 @@ const OwnerDashboard = () => {
     const saveChatHistory = (studentId, messages) => {
         const updated = { ...chatHistory, [studentId]: messages };
         setChatHistory(updated);
-        localStorage.setItem(`owner_chats_${user.id}`, JSON.stringify(updated));
+        localStorage.setItem(`owner_chats_${user?.id}`, JSON.stringify(updated));
     };
 
     const sendChatMessage = (studentId, studentName) => {
@@ -95,38 +91,46 @@ const OwnerDashboard = () => {
 
     const loadDashboardData = () => {
         // Load saved PG or use DEFAULT
-        const savedPG = localStorage.getItem(`owner_pg_${user.id}`);
+        const savedPG = localStorage.getItem(`owner_pg_${user?.id}`);
         if (savedPG) {
             setPg(JSON.parse(savedPG));
         } else {
             // Set default PG for owner
             setPg(DEFAULT_PG);
-            localStorage.setItem(`owner_pg_${user.id}`, JSON.stringify(DEFAULT_PG));
+            localStorage.setItem(`owner_pg_${user?.id}`, JSON.stringify(DEFAULT_PG));
         }
         
         // Load tenants - use DEFAULT if none exists
-        const savedTenants = localStorage.getItem(`owner_tenants_${user.id}`);
+        const savedTenants = localStorage.getItem(`owner_tenants_${user?.id}`);
         if (savedTenants) {
             setTenants(JSON.parse(savedTenants));
         } else {
             setTenants(DEFAULT_TENANTS);
-            localStorage.setItem(`owner_tenants_${user.id}`, JSON.stringify(DEFAULT_TENANTS));
+            localStorage.setItem(`owner_tenants_${user?.id}`, JSON.stringify(DEFAULT_TENANTS));
         }
         
         // Load booking requests - use DEFAULT if none exists
-        const savedRequests = localStorage.getItem(`owner_requests_${user.id}`);
+        const savedRequests = localStorage.getItem(`owner_requests_${user?.id}`);
         if (savedRequests) {
             setBookingRequests(JSON.parse(savedRequests));
         } else {
             setBookingRequests(DEFAULT_REQUESTS);
-            localStorage.setItem(`owner_requests_${user.id}`, JSON.stringify(DEFAULT_REQUESTS));
+            localStorage.setItem(`owner_requests_${user?.id}`, JSON.stringify(DEFAULT_REQUESTS));
         }
         
         // Load payments
         const allPayments = JSON.parse(localStorage.getItem('all_payments') || '[]');
-        const ownerPayments = allPayments.filter(p => p.ownerId === user.id);
+        const ownerPayments = allPayments.filter(p => p.ownerId === user?.id);
         setPayments(ownerPayments);
     };
+
+    // MOVED useEffect AFTER loadDashboardData and loadChatHistory functions
+    useEffect(() => {
+        if (user && user.role === 'owner') {
+            loadDashboardData();
+            loadChatHistory();
+        }
+    }, [user]);  // Changed dependency to [user] only
 
     const handleAddFacility = () => {
         if (facilityInput.trim()) {

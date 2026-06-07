@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BookingPayment.css';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-use-before-define */
 
 const BookingPayment = () => {
     const location = useLocation();
@@ -29,14 +31,6 @@ const BookingPayment = () => {
     const RAZORPAY_KEY_ID = 'rzp_test_SiaqwyEJrTqzIJ';
     const finalAmount = amount;
 
-    useEffect(() => {
-    console.log('Payment page loaded. Amount:', finalAmount, 'Type:', paymentType);
-    loadRazorpayScript();
-    // Auto-trigger payment when page loads
-    setTimeout(() => {
-        handlePayment();
-    }, 500);
-    }, [finalAmount, paymentType, handlePayment])  
     const loadRazorpayScript = () => {
         return new Promise((resolve) => {
             if (window.Razorpay) {
@@ -66,8 +60,9 @@ const BookingPayment = () => {
         try {
             console.log('Creating order for amount:', finalAmount);
             
+            const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
             const response = await axios.post(
-                'http://localhost:5000/api/payments/create-order',
+                `${API_URL}/api/payments/create-order`,
                 {
                     amount: finalAmount,
                     paymentType: paymentType,
@@ -88,8 +83,9 @@ const BookingPayment = () => {
         try {
             console.log('Verifying payment:', paymentResponse);
             
+            const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
             const verificationResponse = await axios.post(
-                'http://localhost:5000/api/payments/verify-payment',
+                `${API_URL}/api/payments/verify-payment`,
                 {
                     orderId: paymentResponse.razorpay_order_id,
                     paymentId: paymentResponse.razorpay_payment_id,
@@ -235,6 +231,16 @@ const BookingPayment = () => {
             setIsProcessing(false);
         }
     };
+
+    // MOVED useEffect AFTER handlePayment function (fixed the order)
+    useEffect(() => {
+        console.log('Payment page loaded. Amount:', finalAmount, 'Type:', paymentType);
+        loadRazorpayScript();
+        // Auto-trigger payment when page loads
+        setTimeout(() => {
+            handlePayment();
+        }, 500);
+    }, [finalAmount, paymentType]);
 
     const handlePrintReceipt = () => {
         const printWindow = window.open('', '_blank');
