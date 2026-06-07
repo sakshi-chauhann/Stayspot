@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './PGDetails.css';
+/* eslint-disable react-hooks/exhaustive-deps */
 
 // Import PG photos from organized folders
 import vallestay1 from '../assets/Vallestay Girls Hostel/v-1.jpeg';
@@ -52,8 +53,8 @@ const PGDetails = () => {
     const [chatMessages, setChatMessages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // All PGs data with CORRECT coordinates (from you)
-    const allPGs = [
+    // All PGs data wrapped in useMemo to prevent recreation on every render
+    const allPGs = useMemo(() => [
         {
             id: 1,
             name: 'Vallestay Girls Hostel',
@@ -186,9 +187,8 @@ const PGDetails = () => {
             totalReviews: 21,
             distance: '0.5 km'
         }
-    ];
+    ], []); // Empty dependency array means this never changes
 
-    // FIXED useEffect - This was the problem!
     useEffect(() => {
         const foundPG = allPGs.find(p => p.id === parseInt(id));
         if (foundPG) {
@@ -233,7 +233,7 @@ const PGDetails = () => {
         }
         
         setLoading(false);
-    }, [id, user?.id, allPGs]);  // ← Fixed: Added all dependencies
+    }, [id, user?.id, allPGs]);
 
     const handleAddReview = (e) => {
         e.preventDefault();
