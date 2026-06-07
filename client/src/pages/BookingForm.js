@@ -2,13 +2,15 @@ import React, { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './BookingForm.css';
+/* eslint-disable no-unused-vars */
 
 const BookingForm = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     
-    const { selectedRoom, selectedRoomPrice, roomObj, pg } = location.state || {};
+    // Removed roomObj since it's not being used
+    const { selectedRoom, selectedRoomPrice, pg } = location.state || {};
     
     const BOOKING_FEE = 500;
     const [showPopup, setShowPopup] = useState(true);
