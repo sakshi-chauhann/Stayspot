@@ -7,10 +7,18 @@ const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // ← NEW: For mobile hamburger menu
 
     const handleLogout = () => {
         logout();
         navigate('/');
+        setDropdownOpen(false);
+        setIsMenuOpen(false);
+    };
+
+    // Close menu when clicking a link
+    const closeMenu = () => {
+        setIsMenuOpen(false);
         setDropdownOpen(false);
     };
 
@@ -20,14 +28,20 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to="/" className="navbar-logo">
+                <Link to="/" className="navbar-logo" onClick={closeMenu}>
                     <span className="logo-icon">🏠</span>
                     <span className="logo-text">StaySpot</span>
                 </Link>
                 
-                <ul className="nav-menu">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/explore">Explore PGs</Link></li>
+                {/* Hamburger Menu Button - Shows on mobile */}
+                <button className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    ☰
+                </button>
+                
+                {/* Navigation Menu - Add 'open' class when menu is open */}
+                <ul className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
+                    <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+                    <li><Link to="/explore" onClick={closeMenu}>Explore PGs</Link></li>
                     
                     {user ? (
                         <>
@@ -62,18 +76,18 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                         <div className="dropdown-divider"></div>
-                                        <Link to="/profile" onClick={() => setDropdownOpen(false)}>
+                                        <Link to="/profile" onClick={closeMenu}>
                                             👤 My Profile
                                         </Link>
                                         {user.role === 'owner' && (
-                                            <Link to="/dashboard" onClick={() => setDropdownOpen(false)}>
+                                            <Link to="/dashboard" onClick={closeMenu}>
                                                 📊 Dashboard
                                             </Link>
                                         )}
-                                        <Link to="/my-bookings" onClick={() => setDropdownOpen(false)}>
+                                        <Link to="/my-bookings" onClick={closeMenu}>
                                             📅 My Bookings
                                         </Link>
-                                        <Link to="/favorites" onClick={() => setDropdownOpen(false)}>
+                                        <Link to="/favorites" onClick={closeMenu}>
                                             ❤️ Saved PGs
                                         </Link>
                                         <div className="dropdown-divider"></div>
@@ -87,8 +101,8 @@ const Navbar = () => {
                     ) : (
                         <>
                             {/* Show Sign In and Register buttons when NOT logged in */}
-                            <li><Link to="/login" className="login-btn">Sign In</Link></li>
-                            <li><Link to="/register" className="register-btn">Register</Link></li>
+                            <li><Link to="/login" className="login-btn" onClick={closeMenu}>Sign In</Link></li>
+                            <li><Link to="/register" className="register-btn" onClick={closeMenu}>Register</Link></li>
                         </>
                     )}
                 </ul>

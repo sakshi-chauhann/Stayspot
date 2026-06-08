@@ -1,467 +1,320 @@
-.navbar {
-
-    background: white;
-
-    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-
-}
-
-
-
-.navbar-container {
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0.8rem 2rem;
-
-}
-
-
-
-.navbar-logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    text-decoration: none;
-
-    font-size: 1.5rem;
-
-    font-weight: 700;
-
-}
-
-
-
-.logo-icon {
-
-    font-size: 1.8rem;
-
-}
-
-
-
-.logo-text {
-
-    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
-
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    background-clip: text;
-
-}
-
-
-
-.nav-menu {
-
-    display: flex;
-
-    list-style: none;
-
-    gap: 1.5rem;
-
-    align-items: center;
-
-}
-
-
-
-.nav-menu a {
-
-    text-decoration: none;
-
-    color: #4a5568;
-
-    font-weight: 500;
-
-    transition: color 0.3s;
-
-}
-
-
-
-.nav-menu a:hover {
-
-    color: #534AB7;
-
-}
-
-
-
-.login-btn {
-
-    background: transparent;
-
-    border: 2px solid #534AB7;
-
-    padding: 0.5rem 1.2rem !important;
-
-    border-radius: 25px;
-
-    color: #534AB7 !important;
-
-}
-
-
-
-.login-btn:hover {
-
-    background: #534AB7;
-
-    color: white !important;
-
-}
-
-
-
-.register-btn {
-
-    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
-
-    padding: 0.5rem 1.2rem !important;
-
-    border-radius: 25px;
-
-    color: white !important;
-
-}
-
-
-
-.register-btn:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 5px 15px rgba(83, 74, 183, 0.3);
-
-}
-
-
-
-/* Profile Icon - Like Instagram */
-
-.profile-dropdown {
-
-    position: relative;
-
-}
-
-
-
-.profile-icon-container {
-
-    cursor: pointer;
-
-    padding: 0.2rem;
-
-}
-
-
-
-.profile-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    cursor: pointer;
-
-    transition: transform 0.2s;
-
-    overflow: hidden;
-
-}
-
-
-
-.profile-icon:hover {
-
-    transform: scale(1.05);
-
-}
-
-
-
-.profile-icon img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
-
-
-.profile-icon span {
-
-    color: white;
-
-    font-weight: bold;
-
-    font-size: 1.2rem;
-
-}
-
-
-
-/* Dropdown Menu - Like Instagram */
-
-.dropdown-menu {
-
-    position: absolute;
-
-    top: 50px;
-
-    right: 0;
-
-    background: white;
-
-    border-radius: 12px;
-
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-
-    min-width: 280px;
-
-    z-index: 1000;
-
-    overflow: hidden;
-
-    animation: slideDown 0.2s ease;
-
-}
-
-
-
-@keyframes slideDown {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(-10px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-}
-
-
-
-.dropdown-header {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 1rem;
-
-}
-
-
-
-.dropdown-avatar {
-
-    width: 50px;
-
-    height: 50px;
-
-    background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
-}
-
-
-
-.dropdown-avatar img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
-
-
-.dropdown-avatar span {
-
-    color: white;
-
-    font-weight: bold;
-
-    font-size: 1.2rem;
-
-}
-
-
-
-.dropdown-info h4 {
-
-    margin: 0;
-
-    font-size: 0.95rem;
-
-    color: #2d3748;
-
-}
-
-
-
-.dropdown-info p {
-
-    margin: 0;
-
-    font-size: 0.75rem;
-
-    color: #718096;
-
-}
-
-
-
-.dropdown-divider {
-
-    height: 1px;
-
-    background: #e2e8f0;
-
-    margin: 0.5rem 0;
-
-}
-
-
-
-.dropdown-menu a {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 0.8rem 1rem;
-
-    text-decoration: none;
-
-    color: #4a5568;
-
-    transition: background 0.3s;
-
-}
-
-
-
-.dropdown-menu a:hover {
-
-    background: #f7fafc;
-
-    color: #534AB7;
-
-}
-
-
-
-.dropdown-logout {
-
-    width: 100%;
-
-    text-align: left;
-
-    padding: 0.8rem 1rem;
-
-    background: none;
-
-    border: none;
-
-    cursor: pointer;
-
-    color: #f56565;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 0.95rem;
-
-}
-
-
-
-.dropdown-logout:hover {
-
-    background: #f7fafc;
-
-}
-
-
-
-@media (max-width: 768px) {
+    .navbar {
+        background: white;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        }
 
     .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem;
+        }
 
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        }   
+
+/* Hamburger Menu Button - Hidden on desktop */
+        .hamburger {
+          display: none;
+         background: none;
+         border: none;
+         font-size: 1.8rem;
+         cursor: pointer;
+         color: #534AB7;
+         padding: 0.5rem;
+            }
+
+        .nav-menu {
+         display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+            }
+
+        .nav-menu a:hover {
+             color: #534AB7;
+            }
+
+        .login-btn {
+             background: transparent;
+            border: 2px solid #534AB7;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 25px;
+            color: #acabc1 !important;
+            }
+
+        .login-btn:hover {
+            background: #534AB7;
+            color: white !important;
+            }
+
+        .register-btn {
+            background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 25px;
+            color: white !important;
+            }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(83, 74, 183, 0.3);
+            }
+
+/* Profile Dropdown */
+        .profile-dropdown {
+             position: relative;
+                }
+
+        .profile-icon-container {
+            cursor: pointer;
+            padding: 0.2rem;
+                }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            overflow: hidden;
+                }
+
+        .profile-icon:hover {
+                transform: scale(1.05);
+                }
+
+        .profile-icon img {
+             width: 100%;
+            height: 100%;
+            object-fit: cover;
+                }
+
+        .profile-icon span {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+                }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 280px;
+            z-index: 1000;
+            overflow: hidden;
+            animation: slideDown 0.2s ease;
+                }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+                }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+    }       
+            }
+
+        .dropdown-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 1rem;
+        }
+
+        .dropdown-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #534AB7 0%, #6B5FD6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .dropdown-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            }
+
+        .dropdown-avatar span {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            }
+
+        .dropdown-info h4 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #2d3748;
+            }
+
+        .dropdown-info p {
+             margin: 0;
+            font-size: 0.75rem;
+            color: #718096;
+            }
+
+        .dropdown-divider {
+             height: 1px;
+            background: #e2e8f0;
+            margin: 0.5rem 0;
+            }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            color: #4a5568;
+            transition: background 0.3s;
+            }
+
+        .dropdown-menu a:hover {
+             background: #f7fafc;
+            color: #534AB7;
+            }
+
+        .dropdown-logout {
+             width: 100%;
+            text-align: left;
+            padding: 0.8rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #f56565;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+                }
+
+        .dropdown-logout:hover {
+            background: #f7fafc;
+            }
+
+/* ============================================ */
+/* MOBILE RESPONSIVE - FIXES THE FUMBLING ISSUE */
+/* ============================================ */
+
+        @media (max-width: 768px) {
+            .navbar-container {
         padding: 0.8rem 1rem;
-
+        flex-wrap: wrap;
     }
-
     
-
-    .nav-menu {
-
-        gap: 1rem;
-
+    /* Show hamburger button on mobile */
+    .hamburger {
+        display: block;
     }
+    
+    /* Hide menu by default on mobile */
+    .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 0;
+        border-top: 1px solid #e2e8f0;
+        margin-top: 0.5rem;
+    }
+    
+    /* Show menu when open */
+    .nav-menu.open {
+        display: flex;
+    }
+    
+    /* Full width menu items */
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-menu a,
+    .nav-menu .login-btn,
+    .nav-menu .register-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem !important;
+        display: block;
+    }
+    
+    /* Profile dropdown on mobile */
+    .profile-dropdown {
+        width: 100%;
+    }
+    
+    .profile-icon-container {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: 0.5rem;
+        box-shadow: none;
+        border: 1px solid #e2e8f0;
+    }
+}
 
+/* Small phones */
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.4rem;
+    }
+    
+    .hamburger {
+        font-size: 1.5rem;
+    }
 }

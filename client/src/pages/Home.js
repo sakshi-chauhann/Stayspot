@@ -160,7 +160,7 @@ const Home = () => {
 
                 <div className="about-content">
 
-                    <h2>Why PG Finder?</h2>
+                    <h2>Why Stayspot?</h2>
 
                     <p>
 
@@ -230,7 +230,7 @@ const Home = () => {
 
                 <div className="footer-bottom">
 
-                    <p>© 2024 Stayspot. All rights reserved. Made for students, by students.</p>
+                    <p>© 2026 Stayspot. All rights reserved. Made for students, by students.</p>
 
                 </div>
 

@@ -583,3 +583,159 @@
     }
 
 }
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 15px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-section p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* IMPORTANT: Buttons side by side horizontally */
+    .hero-buttons {
+        display: flex;
+        flex-direction: row !important;  /* Force horizontal */
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: nowrap !important;  /* Prevent wrapping */
+    }
+    
+    /* Button styles for mobile - smaller and side by side */
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        width: auto !important;
+        min-width: 130px;
+        max-width: 150px;
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+        border-radius: 8px !important;
+        white-space: nowrap;
+        display: inline-block;
+    }
+    
+    /* Rest of your mobile styles... */
+    .features-bar {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: -30px;
+        padding: 1.2rem;
+    }
+    
+    .feature-item {
+        flex-direction: row;
+        text-align: left;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+    
+    .feature-icon {
+        font-size: 1.5rem;
+    }
+    
+    .feature-item h4 {
+        font-size: 0.85rem;
+        margin-bottom: 2px;
+    }
+    
+    .feature-item p {
+        font-size: 0.7rem;
+    }
+    
+    .featured-section {
+        padding: 40px 15px;
+    }
+    
+    .featured-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .about-section {
+        padding: 40px 15px;
+    }
+    
+    .about-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .about-section p {
+        font-size: 0.85rem;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-section h3, 
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+    
+    .footer-section a {
+        font-size: 0.85rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.7rem;
+    }
+}
+
+
+/* Small phones (max-width 480px) */
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-section p {
+        font-size: 0.85rem !important;
+    }
+    
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    
+    .feature-item {
+        gap: 0.8rem;
+    }
+    
+    .feature-icon {
+        font-size: 1.3rem;
+    }
+    
+    .feature-item h4 {
+        font-size: 0.85rem;
+    }
+    
+    .feature-item p {
+        font-size: 0.7rem;
+    }
+    
+    .featured-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-content h3 {
+        font-size: 1rem;
+    }
+    
+    .price {
+        font-size: 1rem;
+    }
+}
