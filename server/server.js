@@ -6,25 +6,9 @@ dotenv.config();
 
 const app = express();
 
-// Allow multiple origins (your Vercel frontend + localhost for testing)
-const allowedOrigins = [
-    'https://stayspot-backend.onrender.com',
-    'https://stayspot-p.vercel.app',
-    'https://stayspot-s-iklf-hz6uozoux-sakshis-projects-dbc70301.vercel.app',  // Add this!
-    'http://localhost:3000'
-];
-
+// SIMPLIFIED CORS - Accepts requests from any frontend URL
 app.use(cors({
-    origin: function(origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl)
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
+    origin: true, // This dynamically accepts any origin
     credentials: true
 }));
 
