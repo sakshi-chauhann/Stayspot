@@ -8,9 +8,10 @@ const app = express();
 
 // Allow multiple origins (your Vercel frontend + localhost for testing)
 const allowedOrigins = [
+    'https://stayspot-backend.onrender.com',
     'https://stayspot-p.vercel.app',
-    'http://localhost:3000',
-    'http://localhost:5000'
+    'https://stayspot-s-iklf-hz6uozoux-sakshis-projects-dbc70301.vercel.app',  // Add this!
+    'http://localhost:3000'
 ];
 
 app.use(cors({
